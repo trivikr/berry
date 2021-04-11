@@ -27,6 +27,10 @@ Yarn now accepts sponsorships! Please give a look at our [OpenCollective](https:
   - It will now remove scope folders (e.g. `node_modules/@yarnpkg`) if they are empty or after removing a scoped dependency.
 - `.pnp.cjs` files with inlined data will now store the data in a JSON string literal instead of an object literal [to improve startup performance](https://v8.dev/blog/cost-of-javascript-2019#json).
 
+### **Breaking Changes**
+
+- PnP fallbacks to `react-scripts` and `gatsby`'s dependencies has been removed since they cause hard to debug issues and those projects should work without them nowadays
+
 ### Bugfixes
 
 - `@yarnpkg/pnpify` now escapes paths correctly
