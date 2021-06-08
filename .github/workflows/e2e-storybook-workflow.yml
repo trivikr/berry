@@ -27,9 +27,19 @@ jobs:
         source scripts/e2e-setup-ci.sh
         yarn dlx create-react-app my-cra && cd my-cra
 
+        # TODO: Remove after compat update
+        yarn config set "packageExtensions.eslint-config-react-app@*.peerDependencies.typescript" "*"
+
         # TODO: Remove when create-react-app fixes their ESLint setup
         yarn add -D eslint-config-react-app eslint
 
         yarn dlx -p @storybook/cli@next sb init --yes
+
+        # TODO: Remove when fixed upstream
+        yarn config set "packageExtensions['@storybook/preset-create-react-app@*'].peerDependencies.webpack" "*"
+        yarn config set "packageExtensions['@storybook/preset-create-react-app@*'].dependencies['react-refresh']" "*"
+        yarn config set "packageExtensions['@storybook/preset-create-react-app@*'].dependencies['webpack-hot-middleware']" "*"
+        yarn add webpack@^4 @babel/core prop-types
+
         yarn build-storybook
 
