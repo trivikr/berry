@@ -5508,7 +5508,7 @@ __metadata:
     semver: ^7.1.2
     terser-webpack-plugin: ^3.0.4
     ts-loader: ^7.0.5
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
     val-loader: ^2.1.1
     webpack: ^5.1.1
@@ -5555,7 +5555,7 @@ __metadata:
     clipanion: ^3.2.0-rc.4
     micromatch: ^4.0.2
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typanion: ^3.3.0
     typescript: ^4.5.2
     yup: ^0.32.9
@@ -5616,7 +5616,7 @@ __metadata:
     tar: ^6.0.5
     tinylogic: ^1.0.3
     treeify: ^1.1.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
     tunnel: ^0.0.6
   languageName: unknown
   linkType: soft
@@ -5634,7 +5634,7 @@ __metadata:
     globby: ^11.0.1
     micromatch: ^4.0.2
     p-limit: ^2.2.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   bin:
     doctor: ./sources/boot-cli-dev.js
@@ -5647,7 +5647,7 @@ __metadata:
   dependencies:
     "@yarnpkg/pnp": "workspace:^"
     esbuild: "npm:esbuild-wasm@^0.11.20"
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     esbuild: ">=0.10.0"
   languageName: unknown
@@ -5676,7 +5676,7 @@ __metadata:
   resolution: "@yarnpkg/fslib@workspace:packages/yarnpkg-fslib"
   dependencies:
     "@yarnpkg/libzip": "workspace:^"
-    tslib: ^1.13.0
+    tslib: 2.3.1
   languageName: unknown
   linkType: soft
 
@@ -5773,7 +5773,7 @@ __metadata:
     remark-html: ^9.0.0
     remark-parse: ^6.0.3
     tinycolor2: ^1.4.1
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typedoc: next
     typedoc-neo-theme: ^1.0.7
     typedoc-plugin-yarn: "portal:./typedoc-plugin-yarn"
@@ -5790,7 +5790,7 @@ __metadata:
   resolution: "@yarnpkg/json-proxy@workspace:packages/yarnpkg-json-proxy"
   dependencies:
     "@yarnpkg/fslib": "workspace:^"
-    tslib: ^1.13.0
+    tslib: 2.3.1
   languageName: unknown
   linkType: soft
 
@@ -5803,7 +5803,7 @@ __metadata:
     ink: ^3.0.8
     react: ^16.13.1
     redux: ^4.0.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     ink: ^2.3.0
     react: ^16.8.4
@@ -5817,7 +5817,7 @@ __metadata:
     "@types/emscripten": ^1.38.0
     "@types/prettier": 1.19.0
     prettier: ^1.19.1
-    tslib: ^1.13.0
+    tslib: 2.3.1
   languageName: unknown
   linkType: soft
 
@@ -5854,7 +5854,7 @@ __metadata:
     jest-environment-node: ^26.0.1
     jest-junit: ^10.0.0
     micromatch: ^4.0.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   dependenciesMeta:
     core-js:
@@ -5897,7 +5897,7 @@ __metadata:
     "@types/js-yaml": ^3.11.1
     js-yaml: ^3.10.0
     pegjs: ^0.10.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
   languageName: unknown
   linkType: soft
 
@@ -5934,7 +5934,7 @@ __metadata:
     lodash: ^4.17.15
     node-emoji: ^1.8.1
     tau-prolog: ^0.2.66
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
@@ -5951,7 +5951,7 @@ __metadata:
     "@yarnpkg/fslib": "workspace:^"
     "@yarnpkg/json-proxy": "workspace:^"
     clipanion: ^3.2.0-rc.4
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
     "@yarnpkg/core": "workspace:^"
@@ -5978,7 +5978,7 @@ __metadata:
     lodash: ^4.17.15
     micromatch: ^4.0.2
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typanion: ^3.3.0
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
@@ -5994,7 +5994,7 @@ __metadata:
     "@yarnpkg/builder": "workspace:^"
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/fslib": "workspace:^"
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   peerDependencies:
     "@yarnpkg/core": "workspace:^"
@@ -6007,7 +6007,7 @@ __metadata:
   dependencies:
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/fslib": "workspace:^"
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/core": "workspace:^"
   languageName: unknown
@@ -6026,7 +6026,7 @@ __metadata:
     git-url-parse: 11.1.2
     lodash: ^4.17.15
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/core": "workspace:^"
   languageName: unknown
@@ -6039,7 +6039,7 @@ __metadata:
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/fslib": "workspace:^"
     "@yarnpkg/plugin-git": "workspace:^"
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/plugin-git": "workspace:^"
@@ -6052,7 +6052,7 @@ __metadata:
   dependencies:
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/fslib": "workspace:^"
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/core": "workspace:^"
   languageName: unknown
@@ -6068,7 +6068,7 @@ __metadata:
     "@yarnpkg/fslib": "workspace:^"
     clipanion: ^3.2.0-rc.4
     lodash: ^4.17.15
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
     "@yarnpkg/core": "workspace:^"
@@ -6094,7 +6094,7 @@ __metadata:
     ink-text-input: ^4.0.1
     react: ^16.13.1
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
@@ -6109,7 +6109,7 @@ __metadata:
   dependencies:
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/fslib": "workspace:^"
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/core": "workspace:^"
   languageName: unknown
@@ -6132,7 +6132,7 @@ __metadata:
     "@zkochan/cmd-shim": ^5.1.0
     clipanion: ^3.2.0-rc.4
     micromatch: ^4.0.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
     "@yarnpkg/core": "workspace:^"
@@ -6153,7 +6153,7 @@ __metadata:
     clipanion: ^3.2.0-rc.4
     enquirer: ^2.3.6
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typanion: ^3.3.0
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
@@ -6175,7 +6175,7 @@ __metadata:
     enquirer: ^2.3.6
     semver: ^7.1.2
     ssri: ^6.0.1
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/plugin-pack": "workspace:^"
@@ -6195,7 +6195,7 @@ __metadata:
     clipanion: ^3.2.0-rc.4
     micromatch: ^4.0.2
     tar-stream: ^2.0.1
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
     "@yarnpkg/core": "workspace:^"
@@ -6211,7 +6211,7 @@ __metadata:
     "@yarnpkg/fslib": "workspace:^"
     "@yarnpkg/libzip": "workspace:^"
     clipanion: ^3.2.0-rc.4
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
     "@yarnpkg/core": "workspace:^"
@@ -6232,7 +6232,7 @@ __metadata:
     clipanion: ^3.2.0-rc.4
     micromatch: ^4.0.2
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
     "@yarnpkg/core": "workspace:^"
@@ -6250,7 +6250,7 @@ __metadata:
     "@yarnpkg/plugin-stage": "workspace:^"
     clipanion: ^3.2.0-rc.4
     p-limit: ^2.2.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
     "@yarnpkg/core": "workspace:^"
@@ -6266,7 +6266,7 @@ __metadata:
     "@yarnpkg/core": "workspace:^"
     "@yarnpkg/fslib": "workspace:^"
     clipanion: ^3.2.0-rc.4
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
@@ -6287,7 +6287,7 @@ __metadata:
     "@yarnpkg/plugin-pack": "workspace:^"
     algoliasearch: ^4.2.0
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
@@ -6315,7 +6315,7 @@ __metadata:
     lodash: ^4.17.15
     react: ^16.13.1
     semver: ^7.1.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
   peerDependencies:
     "@yarnpkg/cli": "workspace:^"
@@ -6337,7 +6337,7 @@ __metadata:
     clipanion: ^3.2.0-rc.4
     micromatch: ^4.0.2
     p-limit: ^2.2.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typanion: ^3.3.0
     typescript: ^4.5.2
   peerDependencies:
@@ -6362,7 +6362,7 @@ __metadata:
     resolve.exports: ^1.1.0
     rollup: ^2.59.0
     rollup-plugin-esbuild: ^3.0.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     typescript: ^4.5.2
     webpack: ^5.1.1
     webpack-cli: ^4.0.0-beta.8
@@ -6381,7 +6381,7 @@ __metadata:
     "@yarnpkg/pnp": "workspace:^"
     clipanion: ^3.2.0-rc.4
     cross-spawn: 7.0.3
-    tslib: ^1.13.0
+    tslib: 2.3.1
   bin:
     pnpify: ./sources/boot-cli-dev.js
   languageName: unknown
@@ -6402,7 +6402,7 @@ __metadata:
     clipanion: ^3.2.0-rc.4
     comment-json: ^2.2.0
     lodash: ^4.17.15
-    tslib: ^1.13.0
+    tslib: 2.3.1
   bin:
     sdks: ./sources/boot-cli-dev.js
   languageName: unknown
@@ -6424,7 +6424,7 @@ __metadata:
     micromatch: ^4.0.2
     stream-buffers: ^3.0.2
     strip-ansi: ^6.0.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
   bin:
     shell: ./sources/boot-cli-dev.js
   languageName: unknown
@@ -20762,7 +20762,7 @@ __metadata:
     serve-static: ^1.14.1
     super-resolve: ^1.0.0
     tar-fs: ^1.16.0
-    tslib: ^1.13.0
+    tslib: 2.3.1
     uuid: ^8.3.2
   languageName: unknown
   linkType: soft
@@ -25789,7 +25789,14 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0, tslib@npm:^1.13.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
+"tslib@npm:2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^1.10.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.13.0
   resolution: "tslib@npm:1.13.0"
   checksum: 50e9327361f94f328c0715582a7f725f69838ab3c2559d143643c5367262fe14552768ba8cfc65bc7dc924a619aea599b3a28b6653458cdca77bbebaf9bc8df4
@@ -27089,7 +27096,7 @@ typescript@^3.8.3:
     rollup: ^2.59.0
     rollup-plugin-esbuild: ^3.0.2
     rollup-plugin-terser: ^7.0.2
-    tslib: ^1.13.0
+    tslib: 2.3.1
     vsce: ^1.85.1
   languageName: unknown
   linkType: soft

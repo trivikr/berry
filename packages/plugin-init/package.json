@@ -7,7 +7,7 @@
     "@yarnpkg/fslib": "workspace:^",
     "clipanion": "^3.2.0-rc.4",
     "lodash": "^4.17.15",
-    "tslib": "^1.13.0"
+    "tslib": "2.3.1"
   },
   "peerDependencies": {
     "@yarnpkg/cli": "workspace:^",
