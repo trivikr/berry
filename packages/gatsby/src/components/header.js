@@ -1,7 +1,8 @@
 import styled                                              from '@emotion/styled';
 import discordIcon                                         from '@iconify/icons-logos/discord';
 import githubIcon                                          from '@iconify/icons-logos/github-icon';
-import {InlineIcon}                                        from '@iconify/react';
+import {Icon, InlineIcon}                                  from '@iconify/react';
+import {ThemeToggler}                                      from 'gatsby-plugin-dark-mode';
 import {Link, graphql, useStaticQuery, withPrefix}         from 'gatsby';
 import PropTypes                                           from 'prop-types';
 import React, {useLayoutEffect, useMemo, useRef, useState} from 'react';
@@ -337,6 +338,12 @@ export const Header = ({children}) => {
 
         <MenuSearchBox onlyIf={ifDesktop}>
           <SearchContainer className={`docsearch-desktop`} />
+          <ThemeToggler>
+            {({theme, toggleTheme}) => (
+              <Icon icon={theme === `dark` ? `bi:moon` : `bi:sun`} height={25}
+                onClick={e => toggleTheme(theme === `dark` ? `light` : `dark`)}/>
+            )}
+          </ThemeToggler>
           <a href={`https://github.com/yarnpkg/berry`}>
             <InlineIcon icon={githubIcon} height={25}/>
           </a>
