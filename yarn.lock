@@ -5607,6 +5607,7 @@ __metadata:
     gatsby-plugin-algolia-docsearch: "portal:./gatsby-plugin-algolia-docsearch"
     gatsby-plugin-catch-links: ^3.7.0
     gatsby-plugin-clipanion-cli: "portal:./gatsby-plugin-clipanion-cli"
+    gatsby-plugin-dark-mode: ^1.1.2
     gatsby-plugin-emotion: ^6.7.0
     gatsby-plugin-favicon: ^3.1.6
     gatsby-plugin-manifest: ^3.7.0
@@ -12769,6 +12770,17 @@ __metadata:
     gatsby: ^3.7.0
   languageName: node
   linkType: soft
+
+"gatsby-plugin-dark-mode@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "gatsby-plugin-dark-mode@npm:1.1.2"
+  dependencies:
+    prop-types: ^15.5.7
+  peerDependencies:
+    react: 16.x
+  checksum: f487d7081267d22dafe1f313433c1ef2f5a9888e0aff62559e36df9d4097f839cd8ddab8f587760b229c23871ccbd251cd692e5075163e14c61d62449987e9ff
+  languageName: node
+  linkType: hard
 
 "gatsby-plugin-emotion@npm:^6.7.0":
   version: 6.7.0
@@ -21210,6 +21222,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prop-types@npm:^15.5.7":
+  version: 15.8.1
+  resolution: "prop-types@npm:15.8.1"
+  dependencies:
+    loose-envify: ^1.4.0
+    object-assign: ^4.1.1
+    react-is: ^16.13.1
+  checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
+  languageName: node
+  linkType: hard
+
 "proper-lockfile@npm:^4.1.2":
   version: 4.1.2
   resolution: "proper-lockfile@npm:4.1.2"
@@ -21798,7 +21821,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.12.0, react-is@npm:^16.7.0, react-is@npm:^16.8.1, react-is@npm:^16.8.4":
+"react-is@npm:^16.12.0, react-is@npm:^16.13.1, react-is@npm:^16.7.0, react-is@npm:^16.8.1, react-is@npm:^16.8.4":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f

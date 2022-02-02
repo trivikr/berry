@@ -10450,6 +10450,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gatsby-plugin-algolia-docsearch", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#portal:./gatsby-plugin-algolia-docsearch::locator=%40yarnpkg%2Fgatsby%40workspace%3Apackages%2Fgatsby"],\
             ["gatsby-plugin-catch-links", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#npm:3.7.0"],\
             ["gatsby-plugin-clipanion-cli", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#portal:./gatsby-plugin-clipanion-cli::locator=%40yarnpkg%2Fgatsby%40workspace%3Apackages%2Fgatsby"],\
+            ["gatsby-plugin-dark-mode", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#npm:1.1.2"],\
             ["gatsby-plugin-emotion", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#npm:6.7.0"],\
             ["gatsby-plugin-favicon", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#npm:3.1.6"],\
             ["gatsby-plugin-manifest", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#npm:3.7.0"],\
@@ -23341,6 +23342,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT"\
         }]\
       ]],\
+      ["gatsby-plugin-dark-mode", [\
+        ["npm:1.1.2", {\
+          "packageLocation": "./.yarn/cache/gatsby-plugin-dark-mode-npm-1.1.2-9aa6e6d004-f487d70812.zip/node_modules/gatsby-plugin-dark-mode/",\
+          "packageDependencies": [\
+            ["gatsby-plugin-dark-mode", "npm:1.1.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#npm:1.1.2", {\
+          "packageLocation": "./.yarn/__virtual__/gatsby-plugin-dark-mode-virtual-5eaf6bf678/0/cache/gatsby-plugin-dark-mode-npm-1.1.2-9aa6e6d004-f487d70812.zip/node_modules/gatsby-plugin-dark-mode/",\
+          "packageDependencies": [\
+            ["gatsby-plugin-dark-mode", "virtual:118b26a6cee620b5aa3e7e8d8b8e34cd9e486f75b92701001168da9be550fadd8c9d9b12643c642e2d528c2624fd8fe7e128eec9d715340efac44400432a0e0c#npm:1.1.2"],\
+            ["@types/react", "npm:16.9.2"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:16.13.1"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["gatsby-plugin-emotion", [\
         ["npm:6.7.0", {\
           "packageLocation": "./.yarn/cache/gatsby-plugin-emotion-npm-6.7.0-882dcc89f4-a73b0fe2fa.zip/node_modules/gatsby-plugin-emotion/",\
@@ -33281,6 +33305,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/prop-types-npm-15.7.2-d7a04f2274-5eef82fdda.zip/node_modules/prop-types/",\
           "packageDependencies": [\
             ["prop-types", "npm:15.7.2"],\
+            ["loose-envify", "npm:1.4.0"],\
+            ["object-assign", "npm:4.1.1"],\
+            ["react-is", "npm:16.13.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:15.8.1", {\
+          "packageLocation": "./.yarn/cache/prop-types-npm-15.8.1-17c71ee7ee-c056d3f1c0.zip/node_modules/prop-types/",\
+          "packageDependencies": [\
+            ["prop-types", "npm:15.8.1"],\
             ["loose-envify", "npm:1.4.0"],\
             ["object-assign", "npm:4.1.1"],\
             ["react-is", "npm:16.13.1"]\
