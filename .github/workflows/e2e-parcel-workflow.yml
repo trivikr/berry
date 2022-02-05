@@ -30,6 +30,184 @@ jobs:
         yarn init -p
         yarn add -D parcel@nightly lodash @babel/core
 
+        # Remove workaround once fixed upstream in parcel https://github.com/parcel-bundler/parcel/issues/6727
+         echo "packageExtensions:" >> .yarnrc.yml
+        echo "  \"@parcel/bundler-default@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/compressor-raw@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/config-default@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      assert: \"*\"" >> .yarnrc.yml
+        echo "      browserify-zlib: \"*\"" >> .yarnrc.yml
+        echo "      buffer: \"*\"" >> .yarnrc.yml
+        echo "      console-browserify: \"*\"" >> .yarnrc.yml
+        echo "      constants-browserify: \"*\"" >> .yarnrc.yml
+        echo "      crypto-browserify: \"*\"" >> .yarnrc.yml
+        echo "      domain-browser: \"*\"" >> .yarnrc.yml
+        echo "      events: \"*\"" >> .yarnrc.yml
+        echo "      https-browserify: \"*\"" >> .yarnrc.yml
+        echo "      os-browserify: \"*\"" >> .yarnrc.yml
+        echo "      path-browserify: \"*\"" >> .yarnrc.yml
+        echo "      process: \"*\"" >> .yarnrc.yml
+        echo "      punycode: \"*\"" >> .yarnrc.yml
+        echo "      querystring-es3: \"*\"" >> .yarnrc.yml
+        echo "      stream-browserify: \"*\"" >> .yarnrc.yml
+        echo "      stream-http: \"*\"" >> .yarnrc.yml
+        echo "      string_decoder: \"*\"" >> .yarnrc.yml
+        echo "      timers-browserify: \"*\"" >> .yarnrc.yml
+        echo "      tty-browserify: \"*\"" >> .yarnrc.yml
+        echo "      url: \"*\"" >> .yarnrc.yml
+        echo "      util: \"*\"" >> .yarnrc.yml
+        echo "      vm-browserify: \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/namer-default@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/optimizer-cssnano@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/optimizer-htmlnano@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/optimizer-image@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/optimizer-svgo@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/optimizer-terser@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/packager-css@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/packager-html@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/packager-js@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/packager-raw@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/packager-svg@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/plugin@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/reporter-cli@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/reporter-dev-server@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/resolver-default@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "      assert: \"*\"" >> .yarnrc.yml
+        echo "      browserify-zlib: \"*\"" >> .yarnrc.yml
+        echo "      buffer: \"*\"" >> .yarnrc.yml
+        echo "      console-browserify: \"*\"" >> .yarnrc.yml
+        echo "      constants-browserify: \"*\"" >> .yarnrc.yml
+        echo "      crypto-browserify: \"*\"" >> .yarnrc.yml
+        echo "      domain-browser: \"*\"" >> .yarnrc.yml
+        echo "      events: \"*\"" >> .yarnrc.yml
+        echo "      https-browserify: \"*\"" >> .yarnrc.yml
+        echo "      os-browserify: \"*\"" >> .yarnrc.yml
+        echo "      path-browserify: \"*\"" >> .yarnrc.yml
+        echo "      process: \"*\"" >> .yarnrc.yml
+        echo "      punycode: \"*\"" >> .yarnrc.yml
+        echo "      querystring-es3: \"*\"" >> .yarnrc.yml
+        echo "      stream-browserify: \"*\"" >> .yarnrc.yml
+        echo "      stream-http: \"*\"" >> .yarnrc.yml
+        echo "      string_decoder: \"*\"" >> .yarnrc.yml
+        echo "      timers-browserify: \"*\"" >> .yarnrc.yml
+        echo "      tty-browserify: \"*\"" >> .yarnrc.yml
+        echo "      url: \"*\"" >> .yarnrc.yml
+        echo "      util: \"*\"" >> .yarnrc.yml
+        echo "      vm-browserify: \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/resolver-glob@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/runtime-browser-hmr@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/runtime-js@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/runtime-react-refresh@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/runtime-service-worker@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-babel@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-css@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-html@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-image@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-js@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-json@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-postcss@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-posthtml@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-raw@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-react-refresh-wrap@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-sass@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/transformer-svg@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  \"@parcel/types@*\":" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      \"@parcel/core\": \"*\"" >> .yarnrc.yml
+        echo "  parcel@*:" >> .yarnrc.yml
+        echo "    peerDependencies:" >> .yarnrc.yml
+        echo "      assert: \"*\"" >> .yarnrc.yml
+        echo "      browserify-zlib: \"*\"" >> .yarnrc.yml
+        echo "      buffer: \"*\"" >> .yarnrc.yml
+        echo "      console-browserify: \"*\"" >> .yarnrc.yml
+        echo "      constants-browserify: \"*\"" >> .yarnrc.yml
+        echo "      crypto-browserify: \"*\"" >> .yarnrc.yml
+        echo "      domain-browser: \"*\"" >> .yarnrc.yml
+        echo "      events: \"*\"" >> .yarnrc.yml
+        echo "      https-browserify: \"*\"" >> .yarnrc.yml
+        echo "      os-browserify: \"*\"" >> .yarnrc.yml
+        echo "      path-browserify: \"*\"" >> .yarnrc.yml
+        echo "      process: \"*\"" >> .yarnrc.yml
+        echo "      punycode: \"*\"" >> .yarnrc.yml
+        echo "      querystring-es3: \"*\"" >> .yarnrc.yml
+        echo "      stream-browserify: \"*\"" >> .yarnrc.yml
+        echo "      stream-http: \"*\"" >> .yarnrc.yml
+        echo "      string_decoder: \"*\"" >> .yarnrc.yml
+        echo "      timers-browserify: \"*\"" >> .yarnrc.yml
+        echo "      tty-browserify: \"*\"" >> .yarnrc.yml
+        echo "      url: \"*\"" >> .yarnrc.yml
+        echo "      util: \"*\"" >> .yarnrc.yml
+        echo "      vm-browserify: \"*\"" >> .yarnrc.yml
+
         # JavaScript
 
         echo "import _ from 'lodash';function printHello() { console.log(_.join(['Hello', 'JS'], ' '))}; printHello();" | tee index.js
