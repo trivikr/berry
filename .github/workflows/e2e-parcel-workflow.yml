@@ -1,4 +1,6 @@
 on:
+  workflow_dispatch:
+    branches: [ fix-parcel-e2e-test ]
   schedule:
   - cron: '0 */4 * * *'
   push:
