@@ -72,19 +72,17 @@ async function copyImpl<P1 extends Path, P2 extends Path>(prelayout: Operations,
     : sourceStat;
 
   const sourceStatsCopyFn = getStatsCopyFn(sourceStat);
-  let updated = await sourceStatsCopyFn(prelayout, postlayout, updateTime, destinationFs, destination, destinationStat, sourceFs, source, sourceStat, opts);
+  const updated = await sourceStatsCopyFn(prelayout, postlayout, updateTime, destinationFs, destination, destinationStat, sourceFs, source, sourceStat, opts);
+  const isDestStatTimeDifferent = destinationStat?.mtime?.getTime() !== mtime.getTime() || destinationStat?.atime?.getTime() !== atime.getTime();
+  const isDestStatModeDifferent = destinationStat === null || (destinationStat.mode & 0o777) !== (sourceStat.mode & 0o777);
 
-  if (updated || destinationStat?.mtime?.getTime() !== mtime.getTime() || destinationStat?.atime?.getTime() !== atime.getTime()) {
+  if (updated || isDestStatTimeDifferent)
     postlayout.push(() => updateTime(destination, atime, mtime));
-    updated = true;
-  }
 
-  if (destinationStat === null || (destinationStat.mode & 0o777) !== (sourceStat.mode & 0o777)) {
+  if (isDestStatModeDifferent)
     postlayout.push(() => destinationFs.chmodPromise(destination, sourceStat.mode & 0o777));
-    updated = true;
-  }
 
-  return updated;
+  return updated || isDestStatTimeDifferent || isDestStatModeDifferent;
 }
 
 async function maybeLStat<P extends Path>(baseFs: FakeFS<P>, p: P) {
