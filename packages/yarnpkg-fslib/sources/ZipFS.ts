@@ -1156,16 +1156,10 @@ export class ZipFS extends BasePortableFakeFS {
     if (this.listings.has(resolvedP))
       throw errors.EISDIR(`open '${p}'`);
 
-    let encoding = null, mode = null;
-
-    if (typeof opts === `string`) {
-      encoding = opts;
-    } else if (typeof opts === `object`) {
-      ({
-        encoding = null,
-        mode = null,
-      } = opts);
-    }
+    const {
+      encoding = null,
+      mode = null,
+    } = (typeof opts === `string`) ? {encoding: opts} : opts!;
 
     const index = this.entries.get(resolvedP);
 
