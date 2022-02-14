@@ -124,11 +124,9 @@ export class ZipFS extends BasePortableFakeFS {
         try {
           this.stats = this.baseFs!.statSync(source);
         } catch (error) {
-          if (error.code === `ENOENT` && pathOptions.create) {
-            this.stats = statUtils.makeDefaultStats();
-          } else {
+          if (error.code !== `ENOENT` || !pathOptions.create)
             throw error;
-          }
+          this.stats = statUtils.makeDefaultStats();
         }
       } else {
         this.stats = statUtils.makeDefaultStats();
