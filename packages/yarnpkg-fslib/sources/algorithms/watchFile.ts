@@ -37,16 +37,13 @@ export function watchFile<P extends Path>(
     } break;
   }
 
-  let statWatchers = statWatchersByFakeFS.get(fakeFs);
-  if (typeof statWatchers === `undefined`)
-    statWatchersByFakeFS.set(fakeFs, statWatchers = new Map());
+  const existingStatWatchers = statWatchersByFakeFS.get(fakeFs);
+  const statWatchers = existingStatWatchers ?? new Map();
+  statWatchersByFakeFS.set(fakeFs, statWatchers);
 
-  let statWatcher = statWatchers.get(path);
-  if (typeof statWatcher === `undefined`) {
-    statWatcher = CustomStatWatcher.create<P>(fakeFs, path, {bigint});
-
-    statWatchers.set(path, statWatcher);
-  }
+  const existingStatWatcher = statWatchers.get(path);
+  const statWatcher = existingStatWatcher ?? CustomStatWatcher.create<P>(fakeFs, path, {bigint});
+  statWatchers.set(path, statWatcher);
 
   statWatcher.registerChangeListener(listener, {persistent, interval});
 
