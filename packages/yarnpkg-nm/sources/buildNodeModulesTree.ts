@@ -323,15 +323,9 @@ const buildPackageTree = (pnp: PnpApi, options: NodeModulesTreeOptions): { packa
       nodes.set(nodeKey, node);
     }
 
-    let hoistPriority;
-    if (isExternalSoftLinkPackage)
-      // External soft link dependencies have the highest priority - we don't want to install inside them
-      hoistPriority = 2;
-    else if (parentPkg.linkType === LinkType.SOFT)
-      // Internal soft link dependencies should have priority over transitive dependencies - to maximize chances having only one top-level node_modules
-      hoistPriority = 1;
-    else
-      hoistPriority = 0;
+    // External soft link dependencies have the highest priority - we don't want to install inside them
+    // Internal soft link dependencies should have priority over transitive dependencies - to maximize chances having only one top-level node_modules
+    const hoistPriority = isExternalSoftLinkPackage ? 2 : parentPkg.linkType === LinkType.SOFT ? 1 : 0;
     node.hoistPriority = Math.max(node.hoistPriority || 0, hoistPriority);
 
     if (isHoistBorder && !isExternalSoftLinkPackage) {
