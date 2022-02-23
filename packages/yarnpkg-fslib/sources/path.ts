@@ -124,15 +124,15 @@ function fromPortablePath(p: Path): NativePath {
   if (process.platform !== `win32`)
     return p as NativePath;
 
-  let portablePathMatch, uncPortablePathMatch;
-  if ((portablePathMatch = p.match(PORTABLE_PATH_REGEXP)))
-    p = portablePathMatch[1];
-  else if ((uncPortablePathMatch = p.match(UNC_PORTABLE_PATH_REGEXP)))
-    p = `\\\\${uncPortablePathMatch[1] ? `.\\` : ``}${uncPortablePathMatch[2]}`;
-  else
-    return p as NativePath;
+  const portablePathMatch = p.match(PORTABLE_PATH_REGEXP);
+  if (portablePathMatch)
+    return portablePathMatch[1].replace(/\//g, `\\`);
 
-  return p.replace(/\//g, `\\`);
+  const uncPortablePathMatch = p.match(UNC_PORTABLE_PATH_REGEXP);
+  if (uncPortablePathMatch)
+    return (`\\\\${uncPortablePathMatch[1] ? `.\\` : ``}${uncPortablePathMatch[2]}`).replace(/\//g, `\\`);
+
+  return p as NativePath;
 }
 
 // Path should look like "N:/berry/scripts/plugin-pack.js"
