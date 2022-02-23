@@ -141,15 +141,17 @@ function toPortablePath(p: Path): PortablePath {
   if (process.platform !== `win32`)
     return p as PortablePath;
 
-  p = p.replace(/\\/g, `/`);
+  const windowsPath = p.replace(/\\/g, `/`);
 
-  let windowsPathMatch, uncWindowsPathMatch;
-  if ((windowsPathMatch = p.match(WINDOWS_PATH_REGEXP)))
-    p = `/${windowsPathMatch[1]}`;
-  else if ((uncWindowsPathMatch = p.match(UNC_WINDOWS_PATH_REGEXP)))
-    p = `/unc/${uncWindowsPathMatch[1] ? `.dot/` : ``}${uncWindowsPathMatch[2]}`;
+  const windowsPathMatch = windowsPath.match(WINDOWS_PATH_REGEXP);
+  if (windowsPathMatch)
+    return `/${windowsPathMatch[1]}` as PortablePath;
 
-  return p as PortablePath;
+  const uncWindowsPathMatch = windowsPath.match(UNC_WINDOWS_PATH_REGEXP);
+  if (uncWindowsPathMatch)
+    return (`/unc/${uncWindowsPathMatch[1] ? `.dot/` : ``}${uncWindowsPathMatch[2]}`) as PortablePath;
+
+  return windowsPath as PortablePath;
 }
 
 export function convertPath<P extends Path>(targetPathUtils: PathUtils<P>, sourcePath: Path): P {
