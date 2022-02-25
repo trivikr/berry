@@ -187,11 +187,10 @@ export async function request(target: string | URL, body: Body, {configuration, 
 }
 
 export async function get(target: string, {configuration, jsonResponse, customErrorMessage, ...rest}: Options) {
-  let entry = miscUtils.getFactoryWithDefault(cache, target, () => {
-    return prettyNetworkError(request(target, null, {configuration, ...rest}), {configuration, customErrorMessage}).then(response => {
-      cache.set(target, response.body);
-      return response.body;
-    });
+  let entry = miscUtils.getFactoryWithDefault(cache, target, async () => {
+    const response = await prettyNetworkError(request(target, null, {configuration, ...rest}), {configuration, customErrorMessage});
+    cache.set(target, response.body);
+    return response.body;
   });
 
   if (Buffer.isBuffer(entry) === false)
