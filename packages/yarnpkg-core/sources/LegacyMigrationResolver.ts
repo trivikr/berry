@@ -31,20 +31,20 @@ export const IMPORTED_PATTERNS: Array<[RegExp, (version: string, ...args: Array<
   [/^[^/]+\.tgz#[0-9a-f]+$/, version => `npm:${version}`],
 ];
 
-function getReferenceFromResolved(version: any, resolved: any) {
-  for (const [pattern, matcher] of IMPORTED_PATTERNS) {
-    const match = resolved.match(pattern);
-    if (match) {
-      return matcher(version, ...match);
-    }
-  }
-  return undefined;
-}
-
 export class LegacyMigrationResolver implements Resolver {
   private resolutions: Map<DescriptorHash, Locator> | null = null;
 
   constructor(private readonly resolver: Resolver) { }
+
+  private getReferenceFromResolved(version: any, resolved: any) {
+    for (const [pattern, matcher] of IMPORTED_PATTERNS) {
+      const match = resolved.match(pattern);
+      if (match) {
+        return matcher(version, ...match);
+      }
+    }
+    return undefined;
+  }
 
   async setup(project: Project, {report}: {report: Report}) {
     const lockfilePath = ppath.join(project.cwd, project.configuration.get(`lockfileFilename`));
@@ -80,7 +80,7 @@ export class LegacyMigrationResolver implements Resolver {
       if (!resolved)
         continue;
 
-      const reference = getReferenceFromResolved(version, resolved);
+      const reference = this.getReferenceFromResolved(version, resolved);
 
       if (!reference) {
         report.reportWarning(MessageName.YARN_IMPORT_FAILED, `${structUtils.prettyDescriptor(project.configuration, descriptor)}: Only some patterns can be imported from legacy lockfiles (not "${resolved}")`);
