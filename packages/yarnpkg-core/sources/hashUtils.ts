@@ -5,22 +5,22 @@ import globby                             from 'globby';
 export function makeHash<T extends string = string>(...args: Array<BinaryLike | null>): T {
   const hash = createHash(`sha512`);
 
-  let acc = ``;
+  const arr: Array<string> = [];
   for (const arg of args) {
     if (typeof arg === `string`) {
-      acc += arg;
+      arr.push(arg);
     } else if (arg) {
-      if (acc) {
-        hash.update(acc);
-        acc = ``;
+      if (arr.length) {
+        hash.update(arr.join(``));
+        arr.length = 0;
       }
 
       hash.update(arg);
     }
   }
 
-  if (acc)
-    hash.update(acc);
+  if (arr.length)
+    hash.update(arr.join(``));
 
   return hash.digest(`hex`) as T;
 }
