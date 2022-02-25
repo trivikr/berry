@@ -371,10 +371,10 @@ export class Project {
     this.workspacesByCwd = new Map();
     this.workspacesByIdent = new Map();
 
-    let workspaceCwds = [this.cwd];
+    const workspaceCwds = [this.cwd];
     while (workspaceCwds.length > 0) {
       const passCwds = workspaceCwds;
-      workspaceCwds = [];
+      workspaceCwds.length = 0;
 
       for (const workspaceCwd of passCwds) {
         if (this.workspacesByCwd.has(workspaceCwd))
