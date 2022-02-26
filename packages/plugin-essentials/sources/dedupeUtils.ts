@@ -167,20 +167,9 @@ export async function dedupe(project: Project, {strategy, patterns, cache, repor
       ),
     );
 
-    let packages: string;
-    switch (dedupedPackageCount) {
-      case 0: {
-        packages = `No packages`;
-      } break;
-
-      case 1: {
-        packages = `One package`;
-      } break;
-
-      default: {
-        packages = `${dedupedPackageCount} packages`;
-      }
-    }
+    const packages = dedupedPackageCount === 1
+      ? `One package`
+      : `${dedupedPackageCount === 0 ? `No` : dedupedPackageCount} packages`;
 
     const prettyStrategy = formatUtils.pretty(configuration, strategy, formatUtils.Type.CODE);
     report.reportInfo(MessageName.UNNAMED, `${packages} can be deduped using the ${prettyStrategy} strategy`);
