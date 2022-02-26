@@ -302,12 +302,11 @@ const buildPackageTree = (pnp: PnpApi, options: NodeModulesTreeOptions): { packa
     const isExternalSoftLinkPackage = isExternalSoftLink(pkg, locator, pnp, topPkgPortableLocation);
 
     if (!node) {
-      let dependencyKind = HoisterDependencyKind.REGULAR;
-      if (isExternalSoftLinkPackage)
-        dependencyKind = HoisterDependencyKind.EXTERNAL_SOFT_LINK;
-      else if (pkg.linkType === LinkType.SOFT && locator.name.endsWith(WORKSPACE_NAME_SUFFIX))
-        dependencyKind = HoisterDependencyKind.WORKSPACE;
-
+      const dependencyKind = isExternalSoftLinkPackage
+        ? HoisterDependencyKind.EXTERNAL_SOFT_LINK
+        : pkg.linkType === LinkType.SOFT && locator.name.endsWith(WORKSPACE_NAME_SUFFIX)
+          ? HoisterDependencyKind.WORKSPACE
+          : HoisterDependencyKind.REGULAR;
 
       node = {
         name,
