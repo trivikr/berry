@@ -86,27 +86,29 @@ export default class SetVersionCommand extends BaseCommand {
       return `file://${process.argv[1]}`;
     };
 
-    let bundleUrl: string;
-    if (this.version === `self`)
-      bundleUrl = getBundlePath();
-    else if (this.version === `latest` || this.version === `berry` || this.version === `stable`)
-      bundleUrl = `https://repo.yarnpkg.com/${await resolveTag(configuration, `stable`)}/packages/yarnpkg-cli/bin/yarn.js`;
-    else if (this.version === `canary`)
-      bundleUrl = `https://repo.yarnpkg.com/${await resolveTag(configuration, `canary`)}/packages/yarnpkg-cli/bin/yarn.js`;
-    else if (this.version === `classic`)
-      bundleUrl = `https://nightly.yarnpkg.com/latest.js`;
-    else if (this.version.match(/^https?:/))
-      bundleUrl = this.version;
-    else if (this.version.match(/^\.{0,2}[\\/]/) || npath.isAbsolute(this.version))
-      bundleUrl = `file://${npath.resolve(this.version)}`;
-    else if (semverUtils.satisfiesWithPrereleases(this.version, `>=2.0.0`))
-      bundleUrl = `https://repo.yarnpkg.com/${this.version}/packages/yarnpkg-cli/bin/yarn.js`;
-    else if (semverUtils.satisfiesWithPrereleases(this.version, `^0.x || ^1.x`))
-      bundleUrl = `https://github.com/yarnpkg/yarn/releases/download/v${this.version}/yarn-${this.version}.js`;
-    else if (semverUtils.validRange(this.version))
-      bundleUrl = `https://repo.yarnpkg.com/${await resolveRange(configuration, this.version)}/packages/yarnpkg-cli/bin/yarn.js`;
-    else
-      throw new UsageError(`Invalid version descriptor "${this.version}"`);
+    const getBundleUrl = async (version: string) => {
+      if (version === `self`)
+        return getBundlePath();
+      else if (version === `latest` || version === `berry` || version === `stable`)
+        return `https://repo.yarnpkg.com/${await resolveTag(configuration, `stable`)}/packages/yarnpkg-cli/bin/yarn.js`;
+      else if (version === `canary`)
+        return `https://repo.yarnpkg.com/${await resolveTag(configuration, `canary`)}/packages/yarnpkg-cli/bin/yarn.js`;
+      else if (version === `classic`)
+        return `https://nightly.yarnpkg.com/latest.js`;
+      else if (version.match(/^https?:/))
+        return version;
+      else if (version.match(/^\.{0,2}[\\/]/) || npath.isAbsolute(version))
+        return `file://${npath.resolve(version)}`;
+      else if (semverUtils.satisfiesWithPrereleases(version, `>=2.0.0`))
+        return `https://repo.yarnpkg.com/${version}/packages/yarnpkg-cli/bin/yarn.js`;
+      else if (semverUtils.satisfiesWithPrereleases(version, `^0.x || ^1.x`))
+        return `https://github.com/yarnpkg/yarn/releases/download/v${version}/yarn-${version}.js`;
+      else if (semverUtils.validRange(version))
+        return `https://repo.yarnpkg.com/${await resolveRange(configuration, version)}/packages/yarnpkg-cli/bin/yarn.js`;
+      throw new UsageError(`Invalid version descriptor "${version}"`);
+    };
+
+    const bundleUrl = await getBundleUrl(this.version);
 
     const report = await StreamReport.start({
       configuration,
