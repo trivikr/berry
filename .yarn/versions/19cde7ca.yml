@@ -1,0 +1,8 @@
+releases:
+  "@yarnpkg/plugin-stage": patch
+
+declined:
+  - "@yarnpkg/plugin-nm"
+  - "@yarnpkg/plugin-pack"
+  - "@yarnpkg/plugin-pnp"
+  - "@yarnpkg/plugin-pnpm"
