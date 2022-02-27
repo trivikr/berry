@@ -22,11 +22,9 @@ export type Consensus = {
 
 export async function findVcsRoot(cwd: PortablePath, {marker}: {marker: Filename}) {
   do {
-    if (!xfs.existsSync(ppath.join(cwd, marker))) {
-      cwd = ppath.dirname(cwd);
-    } else {
+    if (xfs.existsSync(ppath.join(cwd, marker)))
       return cwd;
-    }
+    cwd = ppath.dirname(cwd);
   } while (cwd !== `/`);
 
   return null;
@@ -37,11 +35,9 @@ export function isYarnFile(path: PortablePath, {roots, names}: {roots: Set<strin
     return true;
 
   do {
-    if (!roots.has(path)) {
-      path = ppath.dirname(path);
-    } else {
+    if (roots.has(path))
       return true;
-    }
+    path = ppath.dirname(path);
   } while (path !== `/`);
 
   return false;
@@ -100,11 +96,9 @@ export function findConsensus(lines: Array<string>): Consensus {
 }
 
 export function getCommitPrefix(consensus: Consensus) {
-  if (consensus.useComponent) {
-    return `chore(yarn): `;
-  } else {
-    return ``;
-  }
+  return consensus.useComponent
+    ? `chore(yarn): `
+    : ``;
 }
 
 const VERBS = new Map([
