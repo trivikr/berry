@@ -131,16 +131,12 @@ export async function dedupe(project: Project, {strategy, patterns, cache, repor
     const progress = Report.progressViaCounter(dedupePromises.length);
     report.reportProgress(progress);
 
-    let dedupedPackageCount = 0;
-
-    await Promise.all(
+    const dedupePromisesResult = await Promise.all(
       dedupePromises.map(dedupePromise =>
         dedupePromise
           .then(dedupe => {
             if (dedupe === null)
-              return;
-
-            dedupedPackageCount++;
+              return null;
 
             const {descriptor, currentPackage, updatedPackage} = dedupe;
 
@@ -162,10 +158,12 @@ export async function dedupe(project: Project, {strategy, patterns, cache, repor
             });
 
             project.storedResolutions.set(descriptor.descriptorHash, updatedPackage.locatorHash);
+            return dedupe;
           })
           .finally(() => progress.tick()),
       ),
     );
+    const dedupedPackageCount = dedupePromisesResult.filter(dedupe => dedupe !== null).length;
 
     let packages: string;
     switch (dedupedPackageCount) {
