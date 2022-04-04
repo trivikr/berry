@@ -22,12 +22,6 @@ export type CacheOptions = {
   skipIntegrityCheck?: boolean;
 };
 
-enum ChecksumBehavior {
-  IGNORE = `ignore`,
-  UPDATE = `update`,
-  THROW = `throw`,
-}
-
 export class Cache {
   public readonly configuration: Configuration;
   public readonly cwd: PortablePath;
@@ -100,18 +94,6 @@ export class Cache {
 
   getVersionFilename(locator: Locator) {
     return `${structUtils.slugifyLocator(locator)}-${this.cacheKey}.zip` as Filename;
-  }
-
-  getChecksumBehavior(actualChecksum: string, expectedChecksum: string) {
-    // Using --check-cache overrides any preconfigured checksum behavior
-    if (this.check)
-      return ChecksumBehavior.THROW;
-
-    // If the lockfile references an old cache format, we tolerate different checksums
-    if (getCacheKeyComponent(expectedChecksum) !== getCacheKeyComponent(actualChecksum))
-      return ChecksumBehavior.UPDATE;
-
-    return this.configuration.get(`checksumBehavior`);
   }
 
   getChecksumFilename(locator: Locator, checksum: string) {
@@ -202,6 +184,24 @@ export class Cache {
       return zipFs;
     };
 
+    enum ChecksumBehavior {
+      IGNORE = `ignore`,
+      UPDATE = `update`,
+      THROW = `throw`,
+    }
+
+    const getChecksumBehavior = (actualChecksum: string, expectedChecksum: string) => {
+      // Using --check-cache overrides any preconfigured checksum behavior
+      if (this.check)
+        return ChecksumBehavior.THROW;
+
+      // If the lockfile references an old cache format, we tolerate different checksums
+      if (getCacheKeyComponent(expectedChecksum) !== getCacheKeyComponent(actualChecksum))
+        return ChecksumBehavior.UPDATE;
+
+      return this.configuration.get(`checksumBehavior`);
+    };
+
     const validateFile = async (path: PortablePath, refetchPath: PortablePath | null = null) => {
       // We hide the checksum if the package presence is conditional, because it becomes unreliable
       // so there is no point in computing it unless we're checking the cache
@@ -223,7 +223,7 @@ export class Cache {
       }
 
       if (expectedChecksum !== null && actualChecksum !== expectedChecksum) {
-        const checksumBehavior = this.getChecksumBehavior(actualChecksum, expectedChecksum);
+        const checksumBehavior = getChecksumBehavior(actualChecksum, expectedChecksum);
 
         switch (checksumBehavior) {
           case ChecksumBehavior.IGNORE:
