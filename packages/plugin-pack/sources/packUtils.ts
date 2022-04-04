@@ -262,15 +262,9 @@ async function walk(initialCwd: PortablePath, {hasExplicitFileList, globalList, 
     if (stat.isDirectory()) {
       const entries = await cwdFs.readdirPromise(cwd);
 
-      let hasGitIgnore = false;
-      let hasNpmIgnore = false;
-
-      if (!hasExplicitFileList || cwd !== PortablePath.root) {
-        for (const entry of entries) {
-          hasGitIgnore = hasGitIgnore || entry === `.gitignore`;
-          hasNpmIgnore = hasNpmIgnore || entry === `.npmignore`;
-        }
-      }
+      const [hasGitIgnore, hasNpmIgnore] = (!hasExplicitFileList || cwd !== PortablePath.root)
+        ? [hasIgnoreFile(entries, `.gitignore`), hasIgnoreFile(entries, `.npmignore`)]
+        : [false, false];
 
       const localIgnoreList = hasNpmIgnore
         ? await loadIgnoreList(cwdFs, cwd, `.npmignore` as Filename)
@@ -332,6 +326,10 @@ function addIgnorePattern(target: Array<string>, pattern: string, {cwd}: {cwd: P
     return;
 
   target.push(normalizePattern(trimed, {cwd}));
+}
+
+function hasIgnoreFile(entries: Array<Filename>, ignoreFileName: string) {
+  return entries.some(entry => entry === ignoreFileName);
 }
 
 function isIgnored(cwd: string, {globalList, ignoreLists}: {globalList: IgnoreList, ignoreLists: Array<IgnoreList> | null}) {
