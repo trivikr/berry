@@ -114,13 +114,11 @@ export async function genPackStream(workspace: Workspace, files?: Array<Portable
       };
 
       if (stat.isFile()) {
-        let content: Buffer;
-
-        // The root package.json supports replacement fields in publishConfig
-        if (file === `package.json`)
-          content = Buffer.from(JSON.stringify(await genPackageManifest(workspace), null, 2));
-        else
-          content = await xfs.readFilePromise(source);
+        const content =
+          // The root package.json supports replacement fields in publishConfig
+          (file === `package.json`)
+            ? Buffer.from(JSON.stringify(await genPackageManifest(workspace), null, 2))
+            : await xfs.readFilePromise(source);
 
         pack.entry({...opts, mode, type: `file`}, content, cb);
       } else if (stat.isSymbolicLink()) {
