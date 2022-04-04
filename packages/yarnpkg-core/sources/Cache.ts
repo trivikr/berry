@@ -22,6 +22,12 @@ export type CacheOptions = {
   skipIntegrityCheck?: boolean;
 };
 
+enum ChecksumBehavior {
+  IGNORE = `ignore`,
+  UPDATE = `update`,
+  THROW = `throw`,
+}
+
 export class Cache {
   public readonly configuration: Configuration;
   public readonly cwd: PortablePath;
@@ -99,11 +105,11 @@ export class Cache {
   getChecksumBehavior(actualChecksum: string, expectedChecksum: string) {
     // Using --check-cache overrides any preconfigured checksum behavior
     if (this.check)
-      return `throw`;
+      return ChecksumBehavior.THROW;
 
     // If the lockfile references an old cache format, we tolerate different checksums
     if (getCacheKeyComponent(expectedChecksum) !== getCacheKeyComponent(actualChecksum))
-      return `update`;
+      return ChecksumBehavior.UPDATE;
 
     return this.configuration.get(`checksumBehavior`);
   }
@@ -220,14 +226,14 @@ export class Cache {
         const checksumBehavior = this.getChecksumBehavior(actualChecksum, expectedChecksum);
 
         switch (checksumBehavior) {
-          case `ignore`:
+          case ChecksumBehavior.IGNORE:
             return expectedChecksum;
 
-          case `update`:
+          case ChecksumBehavior.UPDATE:
             return actualChecksum;
 
           default:
-          case `throw`: {
+          case ChecksumBehavior.THROW: {
             throw new ReportError(MessageName.CACHE_CHECKSUM_MISMATCH, `The remote archive doesn't match the expected checksum`);
           }
         }
