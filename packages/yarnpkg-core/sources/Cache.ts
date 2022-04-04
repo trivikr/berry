@@ -96,6 +96,18 @@ export class Cache {
     return `${structUtils.slugifyLocator(locator)}-${this.cacheKey}.zip` as Filename;
   }
 
+  getChecksumBehavior(actualChecksum: string, expectedChecksum: string) {
+    // Using --check-cache overrides any preconfigured checksum behavior
+    if (this.check)
+      return `throw`;
+
+    // If the lockfile references an old cache format, we tolerate different checksums
+    if (getCacheKeyComponent(expectedChecksum) !== getCacheKeyComponent(actualChecksum))
+      return `update`;
+
+    return this.configuration.get(`checksumBehavior`);
+  }
+
   getChecksumFilename(locator: Locator, checksum: string) {
     // We only want the actual checksum (not the cache version, since the whole
     // point is to avoid changing the filenames when the cache version changes)
@@ -205,16 +217,7 @@ export class Cache {
       }
 
       if (expectedChecksum !== null && actualChecksum !== expectedChecksum) {
-        let checksumBehavior;
-
-        // Using --check-cache overrides any preconfigured checksum behavior
-        if (this.check)
-          checksumBehavior = `throw`;
-        // If the lockfile references an old cache format, we tolerate different checksums
-        else if (getCacheKeyComponent(expectedChecksum) !== getCacheKeyComponent(actualChecksum))
-          checksumBehavior = `update`;
-        else
-          checksumBehavior = this.configuration.get(`checksumBehavior`);
+        const checksumBehavior = this.getChecksumBehavior(actualChecksum, expectedChecksum);
 
         switch (checksumBehavior) {
           case `ignore`:
