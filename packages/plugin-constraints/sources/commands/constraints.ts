@@ -49,7 +49,7 @@ export default class ConstraintsCheckCommand extends BaseCommand {
       configuration,
       stdout: this.context.stdout,
     }, async report => {
-      let allSaves = new Set<Workspace>();
+      const allSaves = new Set<Workspace>();
       let errors: Array<[MessageName, string]> = [];
 
       for (let t = 0, T = this.fix ? 10 : 1; t < T; ++t) {
@@ -80,11 +80,8 @@ export default class ConstraintsCheckCommand extends BaseCommand {
         for (const {manifest} of modifiedFields)
           manifest.load(manifest.raw);
 
-        allSaves = new Set([
-          ...allSaves,
-          ...modifiedDependencies,
-          ...modifiedFields,
-        ]);
+        modifiedDependencies.forEach(modifiedDependency => allSaves.add(modifiedDependency));
+        modifiedFields.forEach(modifiedField => allSaves.add(modifiedField));
 
         // If we didn't apply any change then we can exit the loop
         if (modifiedDependencies.size === 0 && modifiedFields.size === 0) {
