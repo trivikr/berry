@@ -843,7 +843,7 @@ function syncPreinstallStateWithDisk(locationTree: LocationTree, binSymlinks: Bi
   const syncNodeWithDisk = (parentPath: PortablePath, entry: Filename, parentNode: LocationNode, refinedNode: LocationNode, parentDiskEntries: Set<Filename>) => {
     let doesExistOnDisk = true;
     const entryPath = ppath.join(parentPath, entry);
-    let childDiskEntries = new Set<Filename>();
+    const childDiskEntries = new Set<Filename>();
 
     if (entry === NODE_MODULES || entry.startsWith(`@`)) {
       let stats;
@@ -858,9 +858,11 @@ function syncPreinstallStateWithDisk(locationTree: LocationTree, binSymlinks: Bi
         installChangedByUser = true;
       } else if (stats.mtimeMs > stateMtimeMs) {
         installChangedByUser = true;
-        childDiskEntries = new Set(xfs.readdirSync(entryPath));
+        xfs.readdirSync(entryPath).forEach(childEntry => childDiskEntries.add(childEntry));
       } else {
-        childDiskEntries = new Set(parentNode.children.get(entry)!.children.keys());
+        Array.from(parentNode.children.get(entry)!.children.keys()).forEach(
+          childEntry => childDiskEntries.add(childEntry),
+        );
       }
 
       const binarySymlinks = binSymlinks.get(parentPath);
