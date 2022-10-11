@@ -50,10 +50,10 @@ export default class ConstraintsCheckCommand extends BaseCommand {
       stdout: this.context.stdout,
     }, async report => {
       let allSaves = new Set<Workspace>();
-      let errors: Array<[MessageName, string]> = [];
+      const outstandingErrors: Array<[MessageName, string]> = [];
 
       for (let t = 0, T = this.fix ? 10 : 1; t < T; ++t) {
-        errors = [];
+        const errors: Array<[MessageName, string]> = [];
 
         const result = await constraints.process();
 
@@ -88,7 +88,13 @@ export default class ConstraintsCheckCommand extends BaseCommand {
 
         // If we didn't apply any change then we can exit the loop
         if (modifiedDependencies.size === 0 && modifiedFields.size === 0) {
+          outstandingErrors.push(...errors);
           break;
+        }
+
+        if (t + 1 === T) {
+          // If we're on the last iteration, we want to report all the errors.
+          outstandingErrors.push(...errors);
         }
       }
 
@@ -98,7 +104,7 @@ export default class ConstraintsCheckCommand extends BaseCommand {
       }));
 
       // report all outstanding errors
-      for (const [messageName, message] of errors) {
+      for (const [messageName, message] of outstandingErrors) {
         report.reportError(messageName, message);
       }
     });
