@@ -34,9 +34,7 @@ export default class ConstraintsQueryCommand extends BaseCommand {
     const {project} = await Project.find(configuration, this.context.cwd);
     const constraints = await Constraints.find(project);
 
-    let query = this.query;
-    if (!query.endsWith(`.`))
-      query = `${query}.`;
+    const query = this.query.endsWith(`.`) ? this.query : `${this.query}.`;
 
     const report = await StreamReport.start({
       configuration,
