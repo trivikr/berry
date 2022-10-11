@@ -1,6 +1,6 @@
-import {BaseCommand}        from '@yarnpkg/cli';
-import {Ident, structUtils} from '@yarnpkg/core';
-import {Option}             from 'clipanion';
+import {BaseCommand} from '@yarnpkg/cli';
+import {structUtils} from '@yarnpkg/core';
+import {Option}      from 'clipanion';
 
 // eslint-disable-next-line arca/no-default-export
 export default class CreateCommand extends BaseCommand {
@@ -28,21 +28,20 @@ export default class CreateCommand extends BaseCommand {
 
     const descriptor = structUtils.parseDescriptor(this.command);
 
-    let modifiedIdent: Ident;
+    const modifiedIdent = descriptor.scope
+      ? // @foo/app -> @foo/create-app
+      structUtils.makeIdent(descriptor.scope, `create-${descriptor.name}`)
+      : descriptor.name.startsWith(`@`)
+        ? // @foo -> @foo/create
+        structUtils.makeIdent(descriptor.name.substring(1), `create`)
+        : // foo -> create-foo
+        structUtils.makeIdent(null, `create-${descriptor.name}`);
 
-    if (descriptor.scope)
-      // @foo/app -> @foo/create-app
-      modifiedIdent = structUtils.makeIdent(descriptor.scope, `create-${descriptor.name}`);
-    else if (descriptor.name.startsWith(`@`))
-      // @foo     -> @foo/create
-      modifiedIdent = structUtils.makeIdent(descriptor.name.substring(1), `create`);
-    else
-      // foo      -> create-foo
-      modifiedIdent = structUtils.makeIdent(null, `create-${descriptor.name}`);
-
-    let finalDescriptorString = structUtils.stringifyIdent(modifiedIdent);
-    if (descriptor.range !== `unknown`)
-      finalDescriptorString += `@${descriptor.range}`;
+    const modifiedIdentString = structUtils.stringifyIdent(modifiedIdent);
+    const finalDescriptorString =
+      descriptor.range === `unknown`
+        ? modifiedIdentString
+        : `${modifiedIdentString}@${descriptor.range}`;
 
     return this.cli.run([`dlx`, ...flags, finalDescriptorString, ...this.args]);
   }
